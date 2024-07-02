@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exu Tiriri da Calunga</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+<canvas id="exuTiririCanvas"></canvas>
+<script>
+    const canvas = document.getElementById('exuTiririCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Função para desenhar a figura central de Exu Tiriri
+    function drawExuTiriri() {
+        // Corpo
+        ctx.fillStyle = 'red';
+        ctx.fillRect(canvas.width / 2 - 25, canvas.height / 2 - 100, 50, 100); // Corpo principal
+        ctx.fillStyle = 'black';
+        ctx.fillRect(canvas.width / 2 - 25, canvas.height / 2, 50, 10); // Calças
+        
+        // Cabeça
+        ctx.beginPath();
+        ctx.arc(canvas.width / 2, canvas.height / 2 - 120, 20, 0, Math.PI * 2, true); // Cabeça
+        ctx.fillStyle = 'black';
+        ctx.fill();
+        
+        // Chapéu
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2 - 20, canvas.height / 2 - 140);
+        ctx.lineTo(canvas.width / 2 + 20, canvas.height / 2 - 140);
+        ctx.lineTo(canvas.width / 2, canvas.height / 2 - 170);
+        ctx.closePath();
+        ctx.fillStyle = 'black';
+        ctx.fill();
+        
+        // Braços
+        ctx.fillStyle = 'red';
+        ctx.fillRect(canvas.width / 2 - 50, canvas.height / 2 - 75, 25, 10); // Braço esquerdo
+        ctx.fillRect(canvas.width / 2 + 25, canvas.height / 2 - 75, 25, 10); // Braço direito
+        
+        // Cetro/Tridente
+        ctx.fillStyle = 'grey';
+        ctx.fillRect(canvas.width / 2 + 40, canvas.height / 2 - 100, 10, 50); // Haste
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2 + 45, canvas.height / 2 - 110);
+        ctx.lineTo(canvas.width / 2 + 55, canvas.height / 2 - 90);
+        ctx.lineTo(canvas.width / 2 + 35, canvas.height / 2 - 90);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    // Função para desenhar o cenário
+    function drawScenario() {
+        // Fundo
+        ctx.fillStyle = '#3e3e3e';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Estradas/Encruzilhadas
+        ctx.fillStyle = '#604020';
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height / 2);
+        ctx.lineTo(canvas.width, canvas.height / 2);
+        ctx.lineTo(canvas.width / 2, 0);
+        ctx.lineTo(canvas.width / 2, canvas.height);
+        ctx.fill();
+
+        // Velas
+        for (let i = 0; i < 5; i++) {
+            ctx.fillStyle = 'white';
+            ctx.fillRect(100 + i * 100, canvas.height - 150, 10, 30); // Corpo da vela
+            ctx.fillStyle = 'yellow';
+            ctx.beginPath();
+            ctx.moveTo(105 + i * 100, canvas.height - 150);
+            ctx.lineTo(110 + i * 100, canvas.height - 160);
+            ctx.lineTo(100 + i * 100, canvas.height - 160);
+            ctx.fill(); // Chama
+        }
+    }
+
+    function draw() {
+        drawScenario();
+        drawExuTiriri();
+    }
+
+    draw();
+</script>
+</body>
+</html>
